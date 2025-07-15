@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NutriMex App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@700&family=Raleway:wght@500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      color: #333;
+    }
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    header nav a {
+      font-family: 'Raleway', sans-serif;
+      color: white;
+      margin: 0.5rem 1rem;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .content {
+      display: none;
+      min-height: calc(100vh - 112px);
+      padding: 4rem 2rem;
+      flex: 1;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+    }
+    .active { display: block; }
+    .card {
+      background: rgba(255,255,255,0.9);
+      color: #333;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 1rem 2rem;
+      margin: 1rem auto;
+      max-width: 700px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-shadow: none;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+    h1, h2 {
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      margin-top: 0;
+    }
+    ul {
+      max-width: 700px;
+      margin: auto;
+      padding: 0;
+      list-style: none;
+    }
+    ul li {
+      background: rgba(255,255,255,0.9);
+      color: #333;
+      margin: 0.5rem auto;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      cursor: pointer;
+      text-shadow: none;
+    }
+    input, button { font-family: inherit; }
+    input { color: #333; }
+    button {
+      background-color: #F9A825;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover { background-color: #C62828; }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #4CAF50;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div><strong>NutriMex</strong></div>
+    <nav>
+      <a onclick="showSection('bienvenida')">Inicio</a>
+      <a onclick="showSection('explorar-recetas')">Explorar Recetas</a>
+      <a onclick="showSection('ingredientes')">Buscar por Ingredientes</a>
+      <a onclick="showSection('planificador')">Planificador</a>
+      <a onclick="showSection('retos')">Retos</a>
+      <a onclick="showSection('chat')">Chat</a>
+      <a onclick="showSection('favoritas')">Favoritas</a>
+      <a onclick="showSection('ajustes')">Ajustes</a>
+    </nav>
+  </header>
+  
+  <div id="bienvenida" class="content active"
+       style="background-image:url('https://images.pexels.com/photos/3184183/pexels-photo-3184183.jpeg');">
+    <h1>Bienvenido a NutriMex</h1>
+    <ul>
+      <li onclick="showSection('explorar-recetas')">🌮 <strong>Recetas Mexicanas Saludables</strong><br/>Cocina tradicional con ingredientes accesibles y nutritivos.</li>
+      <li onclick="showSection('ubicacion')">📍 <strong>Sugerencias Locales</strong><br/>Recomendaciones según tu ubicación.</li>
+      <li onclick="showSection('sustituciones')">🥑 <strong>Sustituciones Inteligentes</strong><br/>Cambia ingredientes caros por opciones locales.</li>
+      <li onclick="showSection('retos')">🏆 <strong>Retos Saludables</strong><br/>Completa retos semanales y gana medallas.</li>
+      <li onclick="showSection('chat')">👩‍⚕️ <strong>Chat con Nutriólogo</strong><br/>Recibe orientación profesional desde la app.</li>
+    </ul>
+  </div>
+
+  <div id="explorar-recetas" class="content"
+       style="background-image:url('https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg');">
+    <h2>🍽️ Explorar Recetas</h2>
+    <div class="card"><strong>Filtros:</strong><br/>Tipo (Desayuno, Comida, Cena), Región (Norte, Centro, Sur), Nivel calórico.</div>
+    <div class="card">🌮 Tacos de nopal con queso panela — bajos en grasa, perfectos para la cena.</div>
+    <div class="card">🥗 Ensalada de quinoa con aguacate — rica en fibra y proteínas.</div>
+    <div class="card">🍲 Sopa de lentejas con plátano macho — tradicional del sur, rica en hierro.</div>
+    <div class="card">🌯 Enchiladas verdes con pollo — versión ligera y sabrosa.</div>
+    <div class="card">🍌 Licuado energético con avena y plátano — desayuno nutritivo y rápido.</div>
+  </div>
+
+  <div id="ingredientes" class="content"
+       style="background-image:url('https://images.pexels.com/photos/4199043/pexels-photo-4199043.jpeg');">
+    <h2>🔍 Buscar por Ingredientes</h2>
+    <input id="inputIngrediente" type="text" placeholder="Escribe un ingrediente..." oninput="filtrarRecetas()" style="width:100%;max-width:600px;margin:0 auto 20px;display:block;padding:10px;border-radius:6px;border:1px solid #ccc;font-size:1rem;">
+    <div id="resultados-recetas"></div>
+  </div>
+
+  <div id="planificador" class="content"
+       style="background-image:url('https://images.pexels.com/photos/733852/pexels-photo-733852.jpeg');">
+    <h2>🗓️ Planificador Semanal</h2>
+    <div class="card">Organiza tus comidas por día y horario (desayuno, comida, cena).</div>
+    <div class="card">Añade recetas directamente desde las búsquedas.</div>
+    <div class="card">Genera lista de compras automática con los ingredientes.</div>
+  </div>
+
+  <div id="retos" class="content"
+       style="background-image:url('https://images.pexels.com/photos/421160/pexels-photo-421160.jpeg');">
+    <h2>🏆 Retos Saludables</h2>
+    <div class="card">Ejemplos: “Sin azúcar 3 días”, “5 frutas al día”.</div>
+    <div class="card">Completa y gana medallas para tu perfil.</div>
+    <div class="card">Motivación semanal para una vida más sana.</div>
+  </div>
+
+  <div id="chat" class="content"
+       style="background-image:url('https://images.pexels.com/photos/6823368/pexels-photo-6823368.jpeg');">
+    <h2>👩‍⚕️ Chat con Nutriólogo</h2>
+    <div class="card" style="max-height:300px;overflow-y:auto;" id="chat-log">
+      <div><strong>Nutriólogo:</strong> ¡Hola! Soy tu nutriólogo virtual. ¿En qué puedo ayudarte hoy?</div>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:10px;">
+      <input id="user-input" type="text" placeholder="Escribe tu pregunta..." style="flex:1;padding:10px;border-radius:6px;border:1px solid #ccc;">
+      <button onclick="enviarMensaje()">Enviar</button>
+    </div>
+  </div>
+
+  <div id="favoritas" class="content"
+       style="background-image:url('https://images.pexels.com/photos/2733918/pexels-photo-2733918.jpeg');">
+    <h2>❤️ Recetas Favoritas</h2>
+    <div class="card">Guarda tus recetas más usadas.</div>
+    <div class="card">Accede fácilmente y agrégalas al planificador.</div>
+    <div class="card">Modifica o elimina recetas cuando desees.</div>
+  </div>
+
+  <div id="ajustes" class="content"
+       style="background-image:url('https://media.istockphoto.com/id/1439425791/photo/digital-technology-software-development-concept-coding-programmer-working-on-laptop-with.jpg');">
+    <h2>⚙️ Ajustes</h2>
+    <div class="card">Cambia tus datos personales: edad, peso, altura.</div>
+    <div class="card">Configura idioma, modo offline o ubicación.</div>
+    <div class="card">Administra tus preferencias y seguridad.</div>
+  </div>
+
+  <div id="ubicacion" class="content"
+       style="background-image:url('https://images.pexels.com/photos/96715/pexels-photo-96715.jpeg');">
+    <h2>📍 Sugerencias Locales</h2>
+    <div class="card">Detectamos tu zona para ofrecerte recomendaciones.</div>
+    <div class="card">Compra ingredientes en mercados o tianguis cercanos.</div>
+  </div>
+
+  <div id="sustituciones" class="content"
+       style="background-image:url('https://images.pexels.com/photos/1656666/pexels-photo-1656666.jpeg');">
+    <h2>🥑 Sustituciones Inteligentes</h2>
+    <div class="card">¿Un ingrediente está caro? Te damos opciones accesibles.</div>
+    <div class="card">Aprovecha productos de temporada para ahorrar.</div>
+  </div>
+
+  <footer>
+    © 2025 NutriMex App (Axeljmz) - Cocina Saludable. Todos los derechos reservados.
+  </footer>
+
+  <script>
+  function showSection(id) {
+    document.querySelectorAll('.content').forEach(section => section.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+
+  const recetasPorIngrediente = {
+    "pollo": ["Ensalada de pollo con aderezo de yogur", "Tacos de pollo con nopales", "Pollo al limón con vegetales asados"],
+    "aguacate": ["Tostadas con aguacate y huevo", "Guacamole con totopos integrales", "Ensalada verde con aguacate y atún"],
+    "zanahoria": ["Sopa de zanahoria y jengibre", "Ensalada rallada de zanahoria con limón", "Panquecitos de avena y zanahoria"],
+    "nopal": ["Tacos de nopal con queso panela", "Ensalada de nopal con jitomate y cebolla", "Nopales al vapor con aguacate"],
+    "huevo": ["Huevos revueltos con espinaca", "Omelette de claras con champiñones", "Tostadas con huevo pochado"],
+    "quinoa": ["Ensalada de quinoa con mango", "Quinoa con verduras al curry", "Bowl de quinoa con hummus"],
+    "plátano": ["Licuado de plátano con avena", "Panqueques de plátano sin harina", "Plátano asado con canela"],
+    "atún": ["Tostadas de atún con vegetales", "Ensalada de atún con garbanzos", "Sándwich integral de atún"],
+    "espinaca": ["Ensalada de espinaca y fresas", "Tortilla de espinaca con queso bajo en grasa", "Sopa de espinaca cremosa"],
+    "lentejas": ["Sopa de lentejas tradicional", "Lentejas con plátano macho", "Hamburguesas de lentejas"]
+  };
+
+  function filtrarRecetas() {
+    const entrada = document.getElementById("inputIngrediente").value.toLowerCase();
+    const resultados = document.getElementById("resultados-recetas");
+    resultados.innerHTML = "";
+    if (entrada.length === 0) return;
+    let coincidencias = Object.keys(recetasPorIngrediente).filter(ing => ing.includes(entrada));
+    if (coincidencias.length === 0) {
+      resultados.innerHTML = `<div class="card">No se encontraron recetas con ese ingrediente.</div>`;
+      return;
+    }
+    coincidencias.forEach(ingrediente => {
+      recetasPorIngrediente[ingrediente].forEach(receta => {
+        resultados.innerHTML += `<div class="card">🍽️ ${receta}</div>`;
+      });
+    });
+  }
+
+  function enviarMensaje() {
+    const entrada = document.getElementById("user-input");
+    const mensaje = entrada.value.trim();
+    if (mensaje === "") return;
+
+    const chatLog = document.getElementById("chat-log");
+    chatLog.innerHTML += `<div><strong>Tú:</strong> ${mensaje}</div>`;
+
+    const respuesta = obtenerRespuesta(mensaje.toLowerCase());
+    chatLog.innerHTML += `<div><strong>Nutriólogo:</strong> ${respuesta}</div>`;
+
+    entrada.value = "";
+    chatLog.scrollTop = chatLog.scrollHeight;
+  }
+
+  function obtenerRespuesta(texto) {
+    if (texto.includes("desayuno")) {
+      return "Un desayuno saludable incluye proteína (como huevo o yogur), carbohidratos complejos (como avena o pan integral) y fruta.";
+    }
+    if (texto.includes("cenar")) {
+      return "Para la cena, opta por comidas ligeras como una ensalada con proteína o una sopa baja en grasa.";
+    }
+    if (texto.includes("bajar de peso")) {
+      return "Recuerda combinar una alimentación balanceada con ejercicio regular. Evita alimentos ultraprocesados y azúcares añadidos.";
+    }
+    if (texto.includes("hidratar")) {
+      return "La hidratación es clave: bebe al menos 2 litros de agua al día, más si haces ejercicio o hace calor.";
+    }
+    if (texto.includes("colación") || texto.includes("snack")) {
+      return "Las colaciones saludables pueden ser: fruta, nueces, yogur bajo en grasa o verduras con hummus.";
+    }
+    if (texto.includes("no sé qué comer")) {
+      return "Puedes probar con un bowl de quinoa, vegetales al vapor y una fuente de proteína como pollo o tofu.";
+    }
+    if (texto.includes("vitaminas")) {
+      return "Una dieta variada suele aportar suficientes vitaminas. Si dudas, consulta a un especialista antes de tomar suplementos.";
+    }
+    if (texto.includes("estreñimiento")) {
+      return "Incrementa tu consumo de fibra (frutas, verduras, granos integrales) y bebe más agua. El ejercicio también ayuda.";
+    }
+
+    return "Gracias por tu consulta. ¿Podrías darme más detalles o hacer otra pregunta?";
+  }
+</script>
+</body>
+</html>
+
